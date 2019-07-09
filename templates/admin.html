@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Button</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1., maximum-scale=1.">
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Socket IO -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='cookies.js')}}" charset="utf-8"></script>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='common.css')}}" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='admin.css')}}" crossorigin="anonymous">
+    <script type="text/javascript" src="{{url_for('static', filename='admin.js')}}" charset="utf-8"></script>
+
+    <script>
+            // Use a "/test" namespace.
+            // An application can open a connection on multiple namespaces, and
+            // Socket.IO will multiplex all those connections on a single
+            // physical channel. If you don't care about multiple channels, you
+            // can set the namespace to an empty string.
+            namespace = '/test';
+            // Connect to the Socket.IO server.
+            // The connection URL has the following format:
+            //     http[s]://<domain>:<port>[/<namespace>]
+            var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
+    </script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <button id="btn_red" onclick="broadcast_red()" type="button" class="col btn btn-danger">All Red</button>
+            <button id="btn_green" onclick="broadcast_green()" type="button" class="col btn btn-success">All Green</button>
+        </div>
+        <!-- .card-group assumes the entire width of the .container and acts as a row for all the .card in it -->
+        <div class="row" id="dynamic-card-group">
+
+        </div>
+    </div>
+    <ul class="list-group" id="dynamic-list-group">
+
+    </ul>
+    <div onclick="logout()" type="button" class="btn btn-dark btn-block" id="logoutbutton">
+        Logout
+    </div>
+    <script>
+        socket.emit('join', {room: getCookie("course")});
+        console.log("joined room "+getCookie("course"));
+    </script>
+</body>
+</html>

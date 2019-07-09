@@ -1,0 +1,17 @@
+body {
+    background-color: #FF5F81;
+    color: #ffffff;
+}
+
+#myBtn {
+    height: calc(100%);
+    min-height: calc(100%);
+    opacity: 50%;
+    margin: 0;
+    background-color: #FF6E69;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#myBtn:hover {
+    opacity: 100%;
+}

@@ -1,0 +1,19 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    background-color: red;
+    color: #ffffff;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    text-align: center;
+}
+
+#logoutbutton{
+    position: fixed;
+    bottom: 0px;
+    height: calc(10%);
+}

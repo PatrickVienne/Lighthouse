@@ -1,0 +1,9 @@
+git init
+git add .
+git commit -m 'initial commit'
+heroku login
+heroku create --stack cedar
+heroku git:remote -a cryptic-chamber-26063
+git push heroku master
+heroku logs
+heroku ps
